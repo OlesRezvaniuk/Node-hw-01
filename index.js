@@ -4,6 +4,7 @@ const {
   listContacts,
   getContactById,
   removeContact,
+  getContactByName,
   addContact,
 } = require("./contacts");
 
@@ -29,6 +30,9 @@ async function invokeAction({ action, id, name, email, phone }) {
     case "get":
       console.table(await getContactById(id));
       break;
+    case "name":
+      console.table(await getContactByName(name));
+      break;
 
     case "add":
       await addContact(name, email, phone);
@@ -41,6 +45,7 @@ async function invokeAction({ action, id, name, email, phone }) {
     default:
       console.warn("\x1B[31m Unknown action type!");
   }
+  no;
 }
 
 invokeAction(argv);
