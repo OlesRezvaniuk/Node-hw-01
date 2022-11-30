@@ -6,6 +6,7 @@ const {
   removeContact,
   getContactByName,
   addContact,
+  cloneContact,
 } = require("./contacts");
 
 const program = new Command();
@@ -38,6 +39,10 @@ async function invokeAction({ action, id, name, email, phone }) {
       await addContact(name, email, phone);
       break;
 
+    case "clone":
+      await cloneContact(name);
+      break;
+
     case "remove":
       await removeContact(id);
       break;
@@ -45,7 +50,6 @@ async function invokeAction({ action, id, name, email, phone }) {
     default:
       console.warn("\x1B[31m Unknown action type!");
   }
-  no;
 }
 
 invokeAction(argv);
